@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "493994304823",
+    "project_id": "blog-app-flutter-de67e",
+    "storage_bucket": "blog-app-flutter-de67e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:493994304823:android:2ff19886692c2fbe8466b2",
+        "android_client_info": {
+          "package_name": "com.shahriar.blog_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCE7cC2iZVd50HtXZ0jbQsXNdvgOaGR6hs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
