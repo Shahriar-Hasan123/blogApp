@@ -31,6 +31,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
 
   Future getImageGallery() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    // final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
