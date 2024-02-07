@@ -1,4 +1,5 @@
 import 'package:blog_app/components/roundButton.dart';
+import 'package:blog_app/screens/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -95,9 +96,11 @@ class _SigninState extends State<Signin> {
                                   if (user != null) {
                                     print('sucess');
                                     toastMessage('User sucessfully created');
+                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
                                     setState(() {
                                      showSpinner=false;
                                     });
+
                                   }
                                 } catch (e) {
                                   print(e.toString());

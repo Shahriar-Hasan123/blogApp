@@ -30,7 +30,6 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Login'),
-          automaticallyImplyLeading: false,
           // backwordsCompatibility:false,
         ),
         body: Column(
