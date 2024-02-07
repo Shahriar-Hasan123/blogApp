@@ -1,3 +1,4 @@
+import 'package:blog_app/screens/forgot_password_screen.dart';
 import 'package:blog_app/screens/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
         appBar: AppBar(
           title: const Text('Login'),
           automaticallyImplyLeading: false,
+          // backwordsCompatibility:false,
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -80,6 +82,19 @@ class _LoginScreenState extends State<LoginScreen> {
                             validator: (value) {
                               return value!.isEmpty ? 'enter password' : null;
                             },
+                          ),
+                        ),
+
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10,bottom: 30),
+                          child: InkWell(
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>ForgotPasswordScreen()));
+                            },
+                            child: Align(
+                              alignment: Alignment.centerRight,
+                              child: Text('Forgot Password?'),
+                            ),
                           ),
                         ),
                         roundButton(

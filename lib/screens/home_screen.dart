@@ -1,4 +1,6 @@
 import 'package:blog_app/screens/add_post.dart';
+import 'package:blog_app/screens/loginScreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +14,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final dbReference = FirebaseDatabase.instance.ref().child('Posts');
+  FirebaseAuth auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,15 +31,26 @@ class _HomeScreenState extends State<HomeScreen> {
               },
               child: Icon(Icons.add)),
           SizedBox(
+            width: 10,
+          ),
+          InkWell(
+              onTap: () {
+                auth.signOut().then((value) {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()));
+                });
+              },
+              child: Icon(Icons.logout)),
+          SizedBox(
             width: 20,
           )
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
         child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
               child: FirebaseAnimatedList(
@@ -49,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       decoration: BoxDecoration(
                         color: Colors.grey.shade100,
                         borderRadius: BorderRadius.circular(10),
-                        ),
+                      ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,21 +72,32 @@ class _HomeScreenState extends State<HomeScreen> {
                             borderRadius: BorderRadius.circular(10),
                             child: FadeInImage.assetNetwork(
                                 fit: BoxFit.cover,
-                                width: MediaQuery.of(context).size.width*1,
-                                height: MediaQuery.of(context).size.height*.25,
+                                width: MediaQuery.of(context).size.width * 1,
+                                height:
+                                    MediaQuery.of(context).size.height * .25,
                                 placeholder: 'images/blog.png',
-                                image: snapshot.child('pImage').value.toString()),
+                                image:
+                                    snapshot.child('pImage').value.toString()),
                           ),
-                          SizedBox(height: 10,),
+                          SizedBox(
+                            height: 10,
+                          ),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Text(snapshot.child('pTitle').value.toString(),style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                            child: Text(
+                              snapshot.child('pTitle').value.toString(),
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.bold),
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Text(snapshot.child('pDescription').value.toString(),style: TextStyle(fontSize: 15,fontWeight: FontWeight.normal),),
+                            child: Text(
+                              snapshot.child('pDescription').value.toString(),
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.normal),
+                            ),
                           )
-                          
                         ],
                       ),
                     ),
